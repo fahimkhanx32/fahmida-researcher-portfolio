@@ -1,0 +1,18 @@
+{
+  "name": "fahmida-bristy-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Dr. Fahmida Bristy academic portfolio: React (Vite) website + Express/MongoDB API + owner dashboard",
+  "scripts": {
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "dev": "concurrently -k -n api,web -c cyan,magenta \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix server start",
+    "seed": "npm --prefix server run seed",
+    "test": "npm --prefix server test",
+    "lint": "npm --prefix client run lint"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

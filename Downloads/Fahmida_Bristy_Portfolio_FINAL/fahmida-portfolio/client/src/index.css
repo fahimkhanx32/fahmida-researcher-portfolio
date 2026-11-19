@@ -1,0 +1,115 @@
+/* =====================================================================================
+   Tailwind entry file — the ONLY stylesheet in the project.
+   It holds Tailwind itself, the colour tokens (light + dark) and the animation keyframes.
+   There is no component CSS: every component is styled with Tailwind classes in its .jsx file.
+
+   LIGHT — Deep Navy #10243B · Soft Ivory #F4F5F2 · Academic Gold #B69A70 · Sage Mist #DCE8E7
+   DARK  — graphite / near-black, silver type, frosted glass panels, hairline borders.
+   To retheme the site, edit only the two token blocks below.
+   ===================================================================================== */
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --c-canvas: #f4f5f2;
+    --c-surface: #fbfbf9;
+    --c-surface-2: #e9efee;
+    --c-sage: #dce8e7;
+    --c-ink: #10243b;
+    --c-muted: #4b5d70;
+    --c-line: rgba(16, 36, 59, 0.14);
+    --c-gold: #b69a70;
+    --c-gold-ink: #7e6338;
+    --c-primary: #10243b;
+    --c-on-primary: #f4f5f2;
+    --sh-card: 0 1px 2px rgba(16, 36, 59, 0.05), 0 14px 30px -18px rgba(16, 36, 59, 0.22);
+    --sh-lift: 0 2px 4px rgba(16, 36, 59, 0.06), 0 24px 40px -20px rgba(16, 36, 59, 0.3);
+
+    /* Navbar */
+    --c-nav: rgba(251, 251, 249, 0.74);
+    --c-nav-strong: rgba(251, 251, 249, 0.92);
+    --c-nav-solid: #fbfbf9;
+    --c-pill: rgba(16, 36, 59, 0.38);
+    --c-beam: #b69a70; /* spotlight colour: brand gold in light mode */
+    --c-beam-soft: rgba(182, 154, 112, 0.32);
+    --c-toggle-glow: rgba(16, 36, 59, 0.18);
+  }
+
+  .dark {
+    --c-canvas: #0d0f12;
+    --c-surface: #15181d;
+    --c-surface-2: #1b1e24;
+    --c-sage: #262a31;
+    --c-ink: #eceef1;
+    --c-muted: #a5abb4;
+    --c-line: rgba(255, 255, 255, 0.12);
+    --c-gold: #aeb4be; /* silver accent replaces gold */
+    --c-gold-ink: #cfd4dc;
+    --c-primary: #dfe2e7;
+    --c-on-primary: #0f1114;
+    --sh-card: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 34px -18px rgba(0, 0, 0, 0.7);
+    --sh-lift: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 2px 4px rgba(0, 0, 0, 0.4), 0 28px 46px -20px rgba(0, 0, 0, 0.8);
+
+    --c-nav: rgba(22, 24, 29, 0.6);
+    --c-nav-strong: rgba(18, 20, 25, 0.86);
+    --c-nav-solid: #16181d;
+    --c-pill: rgba(255, 255, 255, 0.38);
+    --c-beam: #4fe3a6; /* spotlight colour: emerald in dark mode */
+    --c-beam-soft: rgba(79, 227, 166, 0.3);
+    --c-toggle-glow: rgba(255, 255, 255, 0.2);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+  body { background: var(--c-canvas); }
+  :focus-visible { outline: 2px solid var(--c-gold-ink); outline-offset: 3px; }
+  ::selection { background: var(--c-gold); color: #10243b; }
+  .dark ::selection { background: #cfd4dc; color: #0d0f12; }
+}
+
+@theme inline {
+  --color-canvas: var(--c-canvas);
+  --color-surface: var(--c-surface);
+  --color-surface-2: var(--c-surface-2);
+  --color-sage: var(--c-sage);
+  --color-ink: var(--c-ink);
+  --color-muted: var(--c-muted);
+  --color-line: var(--c-line);
+  --color-gold: var(--c-gold);
+  --color-gold-ink: var(--c-gold-ink);
+  --color-primary: var(--c-primary);
+  --color-on-primary: var(--c-on-primary);
+  --color-nav: var(--c-nav);
+  --color-nav-strong: var(--c-nav-strong);
+  --color-nav-solid: var(--c-nav-solid);
+  --color-pill: var(--c-pill);
+  --color-beam: var(--c-beam);
+  --color-beam-soft: var(--c-beam-soft);
+  --shadow-card: var(--sh-card);
+  --shadow-lift: var(--sh-lift);
+  --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* Animations used as `animate-rise`, `animate-pop`, `animate-fade` */
+@theme {
+  --animate-rise: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-pop: pop 0.25s ease-out both;
+  --animate-fade: fade 0.2s ease-out both;
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: translateY(10px) scale(0.985); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
